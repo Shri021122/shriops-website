@@ -941,16 +941,54 @@ function renderForm(success=false){
       <button class="f-btn" id="f-btn" onclick="submitForm()">Send Message →</button>
     </div>`;
 }
-function submitForm(){
-  const name=document.getElementById('f-name')?.value.trim();
-  const email=document.getElementById('f-email')?.value.trim();
-  const msg=document.getElementById('f-msg')?.value.trim();
+async function submitForm(){
+
+  const name=document.getElementById('f-name').value.trim();
+  const email=document.getElementById('f-email').value.trim();
+  const msg=document.getElementById('f-msg').value.trim();
+
   const err=document.getElementById('f-err');
   const btn=document.getElementById('f-btn');
-  if(!name||!email||!msg){err.textContent='All fields are required.';err.style.display='block';return;}
-  btn.textContent='Sending…';btn.disabled=true;
-  // Simulate API call (replace with real fetch('/api/contact') call)
-  setTimeout(()=>renderForm(true),1200);
+
+  if(!name||!email||!msg){
+    err.textContent='All fields required';
+    err.style.display='block';
+    return;
+  }
+
+  btn.textContent='Sending…';
+  btn.disabled=true;
+
+  try{
+
+    await fetch("https://sparkling-bush-50ac.shrikantfiverr.workers.dev",{
+
+      method:"POST",
+
+      headers:{
+        "Content-Type":"application/json"
+      },
+
+      body:JSON.stringify({
+        name:name,
+        email:email,
+        message:msg
+      })
+
+    });
+
+    renderForm(true);
+
+  }catch{
+
+    err.textContent='Failed to send';
+    err.style.display='block';
+
+    btn.textContent='Send Message →';
+    btn.disabled=false;
+
+  }
+
 }
 
 /* ═══════════════════════════════════════════════════
