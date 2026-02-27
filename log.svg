@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="ShriOps simple 4-line mark">
+  <g fill="none" stroke="#eaf1ff" stroke-width="2" stroke-linecap="round">
+    <path d="M30 20 H90"/>
+    <path d="M100 30 V90"/>
+    <path d="M30 100 H90"/>
+    <path d="M20 30 V90"/>
+  </g>
+</svg>
