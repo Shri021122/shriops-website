@@ -87,9 +87,17 @@ nav{
 nav.scrolled{background:rgba(11,15,26,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .nav-i{max-width:1280px;width:100%;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none}
-.nav-logo-box{width:30px;height:30px;background:linear-gradient(135deg,var(--cyan),var(--blue));border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.65rem;font-weight:600;color:#000;letter-spacing:-.02em}
-.nav-name{font-size:.9rem;font-weight:600;color:var(--w);letter-spacing:-.01em}
-.nav-name span{color:var(--g2);font-weight:300}
+.nav-logo-box{width:30px;height:30px;border-radius:7px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.nav-logo-box img{width:100%;height:100%;object-fit:contain;display:block}
+.nav-name{
+  font-size:.9rem;
+  font-weight:700;
+  letter-spacing:-.01em;
+  background:linear-gradient(120deg,#8fe7ff 0%,#00d4ff 45%,#3b82f6 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 14px rgba(0,212,255,.28);
+}
 .nav-links{display:flex;align-items:center;gap:.2rem}
 .nav-links a{padding:.38rem .85rem;border-radius:6px;font-size:.77rem;color:var(--g2);text-decoration:none;transition:all .2s;border:1px solid transparent;letter-spacing:.01em}
 .nav-links a:hover{color:var(--w);background:var(--glass)}
@@ -376,7 +384,8 @@ h1.hero-h1{font-size:clamp(2.8rem,5.2vw,4.1rem);font-weight:800;line-height:1.06
 footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.4rem max(2rem,5vw);position:relative;z-index:1}
 .foot-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem}
 .foot-logo{display:flex;align-items:center;gap:.55rem}
-.foot-box{width:24px;height:24px;background:linear-gradient(135deg,var(--cyan),var(--blue));border-radius:5px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:.58rem;font-weight:600;color:#000}
+.foot-box{width:24px;height:24px;border-radius:5px;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.foot-box img{width:100%;height:100%;object-fit:contain;display:block}
 .foot-name{font-size:.83rem;color:var(--g2)}
 .foot-name span{color:var(--g3)}
 .foot-links{display:flex;gap:2rem;flex-wrap:wrap}
@@ -388,9 +397,48 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.4rem m
    RESPONSIVE
 ═══════════════════════════════════════════════════ */
 @media(max-width:900px){
-  .hero-inner{grid-template-columns:1fr}.hero-card{display:none}
-  .about-grid,.svc-header,.svc-grid,.why-grid,.cta-inner{grid-template-columns:1fr;gap:2.5rem}
-  .proj-row{grid-template-columns:1fr;gap:1.2rem}.proj-n{display:none}
+  body{cursor:auto}
+  #cur-dot,#cur-ring{display:none}
+  nav{height:auto;padding:.7rem 1rem}
+  .nav-i{flex-direction:column;align-items:flex-start;gap:.65rem}
+  .nav-links{
+    width:100%;
+    overflow-x:auto;
+    white-space:nowrap;
+    padding-bottom:.2rem;
+    scrollbar-width:none;
+  }
+  .nav-links::-webkit-scrollbar{display:none}
+  .sec{padding:5rem 1rem}
+  #hero{padding:calc(64px + 2rem) 1rem 3rem;min-height:auto}
+  .hero-inner{grid-template-columns:1fr;gap:2.2rem}
+  .hero-card{display:none}
+  .about-grid,.svc-header,.svc-grid,.why-grid,.cta-inner{grid-template-columns:1fr;gap:2.2rem}
+  .proj-row{grid-template-columns:1fr;gap:1.2rem;padding:1.5rem .65rem}
+  .proj-n{display:none}
+  .term-output{height:320px;padding:1rem}
+  .term-suggestions,.term-input-bar,.term-quickbar{padding:.6rem 1rem}
+  .term-prompt{flex-wrap:wrap}
+  .t-contact-val,.c-opt-val{font-size:.68rem}
+  .foot-inner{justify-content:flex-start}
+}
+@media(max-width:600px){
+  .nav-name{font-size:.82rem}
+  h1.hero-h1{font-size:clamp(2rem,10vw,2.55rem)}
+  .hero-badge{font-size:.62rem}
+  .hero-sub,.cta-p,.why-p,.svc-note,.about-p{font-size:.82rem;line-height:1.7}
+  .hero-actions{gap:.65rem}
+  .btn-primary,.btn-ghost,.f-btn{
+    width:100%;
+    justify-content:center;
+    padding:.78rem 1rem;
+  }
+  .stat-grid,.metric-grid{grid-template-columns:1fr}
+  .pillars{grid-template-columns:1fr}
+  .orb1,.orb2{display:none}
+  .term-hint{display:none}
+  .foot-links{gap:1rem}
+  .foot-copy{width:100%}
 }
 </style>
 </head>
@@ -407,8 +455,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.4rem m
 <nav id="main-nav">
   <div class="nav-i">
     <a href="#hero" class="nav-logo">
-      <div class="nav-logo-box">YN</div>
-      <span class="nav-name">Your Name <span>/ Infra</span></span>
+      <div class="nav-logo-box"><img src="logo.png" alt="ShriOps logo"></div>
+      <span class="nav-name">ShriOps</span>
     </a>
     <div class="nav-links">
       <a href="#about">About</a>
@@ -623,8 +671,8 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:2.4rem m
 <footer>
   <div class="foot-inner">
     <div class="foot-logo">
-      <div class="foot-box">SO</div>
-      <span class="foot-name">Your <span>/ Infrastructure Engineer</span></span>
+      <div class="foot-box"><img src="logo.png" alt="ShriOps logo"></div>
+      <span class="foot-name">ShriOps <span>/ Infrastructure Engineer</span></span>
     </div>
     <div class="foot-links">
       <a href="#">GitHub</a>
@@ -823,9 +871,9 @@ const PILLARS=[
   {i:'⊞',t:'Scalable by Design',d:'Built for 18 months out, not just today. Infrastructure grows with your product without a full rebuild.'},
 ];
 const CONTACT_OPTS=[
-  {i:'✉',l:'Email',v:'contact@shriops.com',h:'mailto:hello@yourname.dev'},
-  {i:'F',l:'Fiverr',v:'https://www.fiverr.com/s/rEjRz1P',h:'https://fiverr.com'},
-  {i:'in',l:'LinkedIn',v:'www.linkedin.com/in/shrikantbhardwaj',h:'https://linkedin.com'},
+  {i:'✉',l:'Email',v:'contact@shriops.com',h:'mailto:contact@shriops.com'},
+  {i:'F',l:'Fiverr',v:'fiverr.com/yourprofile',h:'https://fiverr.com'},
+  {i:'in',l:'LinkedIn',v:'linkedin.com/in/yourprofile',h:'https://linkedin.com'},
 ];
 
 /* ═══════════════════════════════════════════════════
@@ -942,53 +990,31 @@ function renderForm(success=false){
     </div>`;
 }
 async function submitForm(){
-
-  const name=document.getElementById('f-name').value.trim();
-  const email=document.getElementById('f-email').value.trim();
-  const msg=document.getElementById('f-msg').value.trim();
-
+  const name=document.getElementById('f-name')?.value.trim();
+  const email=document.getElementById('f-email')?.value.trim();
+  const msg=document.getElementById('f-msg')?.value.trim();
   const err=document.getElementById('f-err');
   const btn=document.getElementById('f-btn');
-
-  if(!name||!email||!msg){
-    err.textContent='All fields required';
-    err.style.display='block';
-    return;
-  }
-
-  btn.textContent='Sending…';
-  btn.disabled=true;
-
+  if(!name||!email||!msg){err.textContent='All fields are required.';err.style.display='block';return;}
+  err.style.display='none';
+  btn.textContent='Sending…';btn.disabled=true;
   try{
-
-    await fetch("https://steep-sun-42ba.shrikantfiverr.workers.dev",{
-
-      method:"POST",
-
-      headers:{
-        "Content-Type":"application/json"
-      },
-
-      body:JSON.stringify({
-        name:name,
-        email:email,
-        message:msg
-      })
-
+    const res=await fetch('https://sparkling-bush-50ac.shrikantfiverr.workers.dev',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({name,email,message:msg})
     });
-
+    const data=await res.json();
+    if(!res.ok||!data.success){
+      throw new Error(data.error||'Failed to send message. Please try again.');
+    }
     renderForm(true);
-
-  }catch{
-
-    err.textContent='Failed to send';
+  }catch(e){
+    err.textContent=e.message||'Failed to send message. Please try again.';
     err.style.display='block';
-
     btn.textContent='Send Message →';
     btn.disabled=false;
-
   }
-
 }
 
 /* ═══════════════════════════════════════════════════
@@ -1100,7 +1126,7 @@ function renderHelp(){
 
 function renderWhoami(){
   const rows=[
-    ['Name','Your Name'],['Role','Cloud & Kubernetes Infrastructure Engineer'],
+    ['Name','ShriOps'],['Role','Cloud & Kubernetes Infrastructure Engineer'],
     ['Specialisation','Production Reliability & Observability'],
     ['Experience','4+ years in production environments'],
     ['Location','India · UTC+5:30 · Available remotely'],
@@ -1183,14 +1209,14 @@ function renderRates(){
     {t:'  Emergency troubleshooting       $300 – $600',c:'var(--w)'},
     {t:''},
     {t:'Custom architecture & retainer contracts available.',c:'var(--g2)'},
-    {t:'Response within 24h — email: hello@yourname.dev',c:'var(--g2)'},
+    {t:'Response within 24h — email: contact@shriops.com',c:'var(--g2)'},
   ];
   lines.forEach(({t,c})=>appendLine(t?`<span style="font-family:var(--mono);font-size:.76rem;color:${c||'var(--g2)'}">${t}</span>`:'<span>&nbsp;</span>'));
 }
 
 function renderContact(){
   const contacts=[
-    {i:'✉',l:'Email',v:'hello@yourname.dev',h:'mailto:hello@yourname.dev'},
+    {i:'✉',l:'Email',v:'contact@shriops.com',h:'mailto:contact@shriops.com'},
     {i:'F',l:'Fiverr',v:'fiverr.com/yourprofile',h:'https://fiverr.com'},
     {i:'⌥',l:'GitHub',v:'github.com/yourprofile',h:'https://github.com'},
     {i:'in',l:'LinkedIn',v:'linkedin.com/in/yourprofile',h:'https://linkedin.com'},
